@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+
+  ci-tools:
+    build: .
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base:${VERSION}
