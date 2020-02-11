@@ -1,7 +1,13 @@
-version: '3'
+version: '3.7'
 
 services:
 
-  ci-tools:
+  base:
     build: .
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base:${VERSION}
+
+  base-imagemagick:
+    build:
+      context: .
+      dockerfile: Dockerfile-with-imagemagick
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-imagemagick:${VERSION}
