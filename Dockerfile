@@ -1,3 +1,1 @@
-FROM openjdk:8-alpine
-
-RUN apk add --no-cache file
+FROM openjdk:13-slim
