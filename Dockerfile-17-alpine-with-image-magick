@@ -1,14 +1,9 @@
 FROM eclipse-temurin:17-alpine
 
-#ENV APT_FLAGS="--no-install-recommends -y"
-#RUN apt-get update
-#RUN apt-get upgrade -y
-#RUN apt-get install ${APT_FLAGS} imagemagick libmagickcore-dev ghostscript gsfonts
-
 RUN apk add file imagemagick ghostscript
 
 # https://wiki.alpinelinux.org/wiki/Fonts
-# removed : font-bitstream-* font-noto-* font-ipa
+# removed (not found) : font-bitstream-* font-noto-* font-ipa
 RUN apk add terminus-font ttf-inconsolata ttf-dejavu font-noto ttf-font-awesome font-noto-extra \
     font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic \
     font-noto-thai font-noto-tibetan font-sony-misc font-daewoo-misc font-jis-misc \
