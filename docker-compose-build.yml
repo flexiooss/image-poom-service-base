@@ -17,8 +17,16 @@ services:
       context: .
       dockerfile: Dockerfile-with-imagemagick
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-imagemagick:${VERSION}
+
   base-imagemagick-17-alpine:
     build:
       context: .
       dockerfile: Dockerfile-17-alpine-with-image-magick
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-imagemagick:${VERSION}
+
+
+  base-with-build-tools-17-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-17-alpine-with-build-tools
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-17-alpine:${VERSION}
