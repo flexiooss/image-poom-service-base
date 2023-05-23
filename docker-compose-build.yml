@@ -18,6 +18,12 @@ services:
       dockerfile: Dockerfile-17-alpine-with-font-config
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-font-config:${VERSION}
 
+  base-17-alpine-with-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile-17-alpine-with-docker
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-with-docker:${VERSION}
+
   base-imagemagick:
     build:
       context: .
@@ -36,3 +42,9 @@ services:
       context: .
       dockerfile: Dockerfile-17-alpine-with-build-tools
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-17-alpine:${VERSION}
+
+  base-with-build-tools-and-docker-17-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-17-alpine-with-build-tools-and-docker
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-17-alpine:${VERSION}

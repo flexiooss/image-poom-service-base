@@ -1,0 +1,4 @@
+FROM eclipse-temurin:17-alpine
+
+RUN apk add file
+RUN apk add docker docker-compose
