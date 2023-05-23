@@ -11,5 +11,6 @@ RUN apk add terminus-font ttf-inconsolata ttf-dejavu font-noto ttf-font-awesome 
     font-noto-extra font-arabic-misc \
     font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic \
     font-noto-arabic font-noto-armenian font-noto-cherokee font-noto-devanagari font-noto-ethiopic font-noto-georgian \
-    font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai
+    font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai \
+    graphviz
 RUN fc-cache -fv
