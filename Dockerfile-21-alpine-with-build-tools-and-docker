@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-alpine
+FROM eclipse-temurin:21-alpine
 
 RUN apk add file curl tar bash wget git python3 openssh
 
@@ -9,6 +9,7 @@ RUN apk add file curl tar bash wget git python3 openssh
 ENV MVN_VERSION=3.9.6
 RUN wget https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz -O /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz
 RUN tar zxvf /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz -C /usr/local/
+
 ENV MVN_LOCATION=/usr/local/apache-maven-${MVN_VERSION}
 
 ENV PATH $MVN_LOCATION/bin:$PATH
