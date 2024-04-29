@@ -36,7 +36,6 @@ services:
       dockerfile: Dockerfile-17-alpine-with-image-magick
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-imagemagick:${VERSION}
 
-
   base-with-build-tools-17-alpine:
     build:
       context: .
@@ -48,3 +47,41 @@ services:
       context: .
       dockerfile: Dockerfile-17-alpine-with-build-tools-and-docker
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-17-alpine:${VERSION}
+
+######   JAVA 21   #######
+
+  base-21-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine:${VERSION}
+
+  base-21-alpine-with-font-config:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine-with-font-config
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine-font-config:${VERSION}
+
+  base-21-alpine-with-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine-with-docker
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine-with-docker:${VERSION}
+
+  base-imagemagick-21-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine-with-image-magick
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine-imagemagick:${VERSION}
+
+  base-with-build-tools-21-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine-with-build-tools
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-21-alpine:${VERSION}
+
+  base-with-build-tools-and-docker-21-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine-with-build-tools-and-docker
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-21-alpine:${VERSION}

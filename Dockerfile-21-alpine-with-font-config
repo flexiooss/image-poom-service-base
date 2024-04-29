@@ -1,0 +1,11 @@
+FROM eclipse-temurin:21-alpine
+
+#ENV APT_FLAGS="--no-install-recommends -y"
+#RUN apt-get update
+#RUN apt-get upgrade -y
+#RUN apt-get install ${APT_FLAGS} file
+
+RUN apk add file
+RUN apk add freetype
+RUN apk add fontconfig
+RUN apk add ttf-dejavu
