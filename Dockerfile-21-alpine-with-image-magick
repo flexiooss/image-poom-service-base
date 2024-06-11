@@ -23,4 +23,6 @@ RUN apk add font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki
 RUN apk add font-noto-arabic font-noto-armenian font-noto-cherokee font-noto-devanagari font-noto-ethiopic font-noto-georgian
 RUN apk add font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai
 
+RUN apk add graphviz
+
 RUN fc-cache -fv
