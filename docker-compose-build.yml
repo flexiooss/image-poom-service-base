@@ -74,6 +74,12 @@ services:
       dockerfile: Dockerfile-21-alpine-with-image-magick
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine-imagemagick:${VERSION}
 
+  base-libreoffice-21-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-alpine-with-libreoffice
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine-libreoffice:${VERSION}
+
   base-with-build-tools-21-alpine:
     build:
       context: .
