@@ -6,49 +6,7 @@ services:
     build: .
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base:${VERSION}
 
-  base-17-alpine:
-    build:
-      context: .
-      dockerfile: Dockerfile-17-alpine
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine:${VERSION}
-
-  base-17-alpine-with-font-config:
-    build:
-      context: .
-      dockerfile: Dockerfile-17-alpine-with-font-config
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-font-config:${VERSION}
-
-  base-17-alpine-with-docker:
-    build:
-      context: .
-      dockerfile: Dockerfile-17-alpine-with-docker
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-with-docker:${VERSION}
-
-  base-imagemagick:
-    build:
-      context: .
-      dockerfile: Dockerfile-with-imagemagick
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-imagemagick:${VERSION}
-
-  base-imagemagick-17-alpine:
-    build:
-      context: .
-      dockerfile: Dockerfile-17-alpine-with-image-magick
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-17-alpine-imagemagick:${VERSION}
-
-  base-with-build-tools-17-alpine:
-    build:
-      context: .
-      dockerfile: Dockerfile-17-alpine-with-build-tools
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-17-alpine:${VERSION}
-
-  base-with-build-tools-and-docker-17-alpine:
-    build:
-      context: .
-      dockerfile: Dockerfile-17-alpine-with-build-tools-and-docker
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-17-alpine:${VERSION}
-
-######   JAVA 21   #######
+######   JAVA 21 alpine  #######
 
   base-21-alpine:
     build:
@@ -91,3 +49,17 @@ services:
       context: .
       dockerfile: Dockerfile-21-alpine-with-build-tools-and-docker
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-21-alpine:${VERSION}
+
+  ######   JAVA 21 with ubuntu  #######
+
+  base-21-jammy:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-jammy
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-jammy:${VERSION}
+
+  base-21-jammy-with-imagemagick:
+    build:
+      context: .
+      dockerfile: Dockerfile-21-jammy
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-jammy:${VERSION}
