@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
 
-  base:
-    build: .
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base:${VERSION}
+#  base:
+#    build: .
+#    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base:${VERSION}
 
 ######   JAVA 21 alpine  #######
 
@@ -38,17 +38,23 @@ services:
       dockerfile: Dockerfile-21-alpine-with-libreoffice
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-21-alpine-libreoffice:${VERSION}
 
-  base-with-build-tools-21-alpine:
-    build:
-      context: .
-      dockerfile: Dockerfile-21-alpine-with-build-tools
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-21-alpine:${VERSION}
+#  base-with-build-tools-21-alpine:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-21-alpine-with-build-tools
+#    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-21-alpine:${VERSION}
 
-  base-with-build-tools-and-docker-21-alpine:
+#  base-with-build-tools-and-docker-21-alpine:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-21-alpine-with-build-tools-and-docker
+#    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-21-alpine:${VERSION}
+
+  base-25-alpine:
     build:
       context: .
-      dockerfile: Dockerfile-21-alpine-with-build-tools-and-docker
-    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-21-alpine:${VERSION}
+      dockerfile: Dockerfile-25-alpine
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine:${VERSION}
 
   ######   JAVA 21 with ubuntu  #######
 
