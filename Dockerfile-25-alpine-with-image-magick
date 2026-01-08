@@ -1,0 +1,31 @@
+FROM eclipse-temurin:25-alpine
+
+RUN apk add file curl imagemagick ghostscript
+
+# support SVG conversion
+RUN apk add librsvg
+
+# https://wiki.alpinelinux.org/wiki/Fonts
+# removed (not found) : font-bitstream-* font-noto-* font-ipa
+
+# base languages
+RUN apk add font-terminus font-inconsolata font-dejavu font-noto font-noto-cjk font-awesome font-noto-extra
+
+# These selections add special support for cyrillic languages like Russian and Serbian, etc.:
+RUN apk add font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
+
+# These selections cover special Asiatic languages like Japanese, etc.:
+RUN apk add font-terminus font-noto font-noto-thai font-noto-tibetan font-ipa font-sony-misc font-jis-misc
+
+# The following will add some partially supported Chinese fonts:
+RUN apk add font-isas-misc
+
+#others
+RUN apk add font-terminus font-noto font-noto-extra font-arabic-misc
+RUN apk add font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
+RUN apk add font-noto-arabic font-noto-armenian font-noto-cherokee font-noto-devanagari font-noto-ethiopic font-noto-georgian
+RUN apk add font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai
+
+RUN apk add graphviz
+
+RUN fc-cache -fv

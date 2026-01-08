@@ -1,0 +1,63 @@
+FROM eclipse-temurin:25-alpine
+
+#ENV APT_FLAGS="--no-install-recommends -y"
+#RUN apt-get update
+#RUN apt-get upgrade -y
+#RUN apt-get install ${APT_FLAGS} file
+
+RUN apk add file curl tar bash wget git python3 openssh
+
+
+####################
+# maven
+####################
+ENV MVN_VERSION=3.9.12
+RUN wget https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz -O /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz
+RUN tar zxvf /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz -C /usr/local/
+
+ENV MVN_LOCATION=/usr/local/apache-maven-${MVN_VERSION}
+
+ENV PATH $MVN_LOCATION/bin:$PATH
+ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+ENV MAVEN_MS "256m"
+ENV MAVEN_MX "512m"
+ENV MAVEN_OPTS "-Xms$MAVEN_MS -Xmx$MAVEN_MX"
+
+RUN echo $PATH
+RUN mvn --version
+
+
+
+
+####################
+# flexio-flow
+####################
+ENV FLEXIO_FLOW_VERSION 0.23.0
+
+RUN mkdir -p /flexio-flow
+RUN git clone --branch $FLEXIO_FLOW_VERSION https://github.com/flexiooss/flexio-flow.git /flexio-flow
+RUN bash /flexio-flow/venv.sh
+COPY flexio-flow /usr/local/bin/
+RUN chmod a+x  /usr/local/bin/flexio-flow
+
+
+VOLUME ["$USER_HOME_DIR/.m2", "/src"]
+WORKDIR /src
+
+
+####################
+# cleanup
+####################
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm -f /root/.m2/settings.xml
+RUN rm -rf /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz
+
+####################
+# tool versions
+####################
+RUN echo "CI Tools    : $CI_TOOLS_IMAGE_VERSION" >> /versions.txt
+RUN echo "" >> /versions.txt
+RUN mvn -version >> /versions.txt
+RUN echo "Flexio Flow : $FLEXIO_FLOW_VERSION" >> /versions.txt
+RUN echo "Python 3    : $(python3 --version)" >> /versions.txt
+RUN cat /versions.txt

@@ -58,6 +58,36 @@ services:
       dockerfile: Dockerfile-25-alpine
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine:${VERSION}
 
+  base-25-alpine-with-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile-25-alpine-with-docker
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-with-docker:${VERSION}
+
+  base-imagemagick-25-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-25-alpine-with-image-magick
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-imagemagick:${VERSION}
+
+  base-libreoffice-25-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-25-alpine-with-libreoffice
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-libreoffice:${VERSION}
+
+  base-with-build-tools-25-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-25-alpine-with-build-tools
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-25-alpine:${VERSION}
+
+  base-with-build-tools-and-docker-25-alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile-25-alpine-with-build-tools-and-docker
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-25-alpine:${VERSION}
+
   ######   JAVA 21 with ubuntu  #######
 
   base-21-jammy:
