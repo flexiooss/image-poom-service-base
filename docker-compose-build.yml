@@ -50,6 +50,8 @@ services:
       dockerfile: Dockerfile-21-alpine-with-build-tools-and-docker
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-21-alpine:${VERSION}
 
+######   JAVA 25 alpine  #######
+
   base-25-alpine:
     build:
       context: .

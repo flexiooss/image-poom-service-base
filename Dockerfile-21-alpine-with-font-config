@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-alpine
 #RUN apt-get upgrade -y
 #RUN apt-get install ${APT_FLAGS} file
 
-RUN apk add file
+RUN apk add file curl
 RUN apk add freetype
 RUN apk add fontconfig
 RUN apk add ttf-dejavu
