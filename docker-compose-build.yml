@@ -58,6 +58,12 @@ services:
       dockerfile: Dockerfile-25-alpine
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine:${VERSION}
 
+  base-25-alpine-with-font-config:
+    build:
+      context: .
+      dockerfile: Dockerfile-25-alpine-with-font-config
+    image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-font-config:${VERSION}
+
   base-25-alpine-with-docker:
     build:
       context: .
