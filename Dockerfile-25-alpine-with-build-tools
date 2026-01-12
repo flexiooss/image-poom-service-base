@@ -1,4 +1,9 @@
-FROM eclipse-temurin:21-alpine
+FROM eclipse-temurin:25-alpine
+
+#ENV APT_FLAGS="--no-install-recommends -y"
+#RUN apt-get update
+#RUN apt-get upgrade -y
+#RUN apt-get install ${APT_FLAGS} file
 
 RUN apk add file curl tar bash wget git python3 openssh
 
@@ -20,6 +25,9 @@ ENV MAVEN_OPTS "-Xms$MAVEN_MS -Xmx$MAVEN_MX"
 
 RUN echo $PATH
 RUN mvn --version
+
+
+
 
 ####################
 # flexio-flow
@@ -53,5 +61,3 @@ RUN mvn -version >> /versions.txt
 RUN echo "Flexio Flow : $FLEXIO_FLOW_VERSION" >> /versions.txt
 RUN echo "Python 3    : $(python3 --version)" >> /versions.txt
 RUN cat /versions.txt
-
-RUN apk add docker docker-compose
