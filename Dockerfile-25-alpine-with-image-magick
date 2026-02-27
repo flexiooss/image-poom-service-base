@@ -4,6 +4,8 @@ RUN apk add file curl imagemagick ghostscript
 
 # support SVG conversion
 RUN apk add librsvg
+# support HEIF/HEIC format
+RUN apk add libheif libheif-tools
 
 # https://wiki.alpinelinux.org/wiki/Fonts
 # removed (not found) : font-bitstream-* font-noto-* font-ipa
