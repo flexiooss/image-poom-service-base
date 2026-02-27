@@ -1,0 +1,127 @@
+###_____________java25base__________________________###
+FROM eclipse-temurin:25-alpine-3.23 AS java-25-base
+RUN apk add file curl
+
+###_____________java25withBuildTools________________###
+FROM java-25-base AS java-25-with-build-tools
+RUN apk add tar bash wget git python3 openssh
+
+####################
+# maven
+####################
+ENV MVN_VERSION=3.9.12
+RUN wget https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz -O /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz
+RUN tar zxvf /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz -C /usr/local/
+
+ENV MVN_LOCATION=/usr/local/apache-maven-${MVN_VERSION}
+
+ENV PATH $MVN_LOCATION/bin:$PATH
+ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+ENV MAVEN_MS "256m"
+ENV MAVEN_MX "512m"
+ENV MAVEN_OPTS "-Xms$MAVEN_MS -Xmx$MAVEN_MX"
+
+RUN echo $PATH
+RUN mvn --version
+
+####################
+# flexio-flow
+####################
+ENV FLEXIO_FLOW_VERSION 0.23.0
+
+RUN mkdir -p /flexio-flow
+RUN git clone --branch $FLEXIO_FLOW_VERSION https://github.com/flexiooss/flexio-flow.git /flexio-flow
+RUN bash /flexio-flow/venv.sh
+COPY flexio-flow /usr/local/bin/
+RUN chmod a+x  /usr/local/bin/flexio-flow
+
+
+VOLUME ["$USER_HOME_DIR/.m2", "/src"]
+WORKDIR /src
+
+
+####################
+# cleanup
+####################
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm -f /root/.m2/settings.xml
+RUN rm -rf /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz
+
+####################
+# tool versions
+####################
+RUN echo "CI Tools    : $CI_TOOLS_IMAGE_VERSION" >> /versions.txt
+RUN echo "" >> /versions.txt
+RUN mvn -version >> /versions.txt
+RUN echo "Flexio Flow : $FLEXIO_FLOW_VERSION" >> /versions.txt
+RUN echo "Python 3    : $(python3 --version)" >> /versions.txt
+RUN cat /versions.txt
+
+
+###_____________java25withBuildToolsAndDocker___________###
+FROM java-25-with-build-tools AS java-25-with-build-tools-and-docker
+RUN apk add docker docker-compose
+
+
+###_____________java25withDocker______________________###
+FROM java-25-base AS java-25-with-docker
+RUN apk add docker docker-compose
+
+###_____________java25withFontConfig______________________###
+FROM java-25-base AS java-25-with-font-config
+RUN apk add freetype
+RUN apk add fontconfig
+RUN apk add ttf-dejavu
+
+
+###_____________java25withLanguagesAndFonts_______________###
+FROM java-25-base AS java-25-with-languages-and-fonts
+
+# https://wiki.alpinelinux.org/wiki/Fonts
+# removed (not found) : font-bitstream-* font-noto-* font-ipa
+
+# base languages
+
+RUN apk add font-terminus font-inconsolata font-dejavu font-noto font-noto-cjk font-awesome font-noto-extra
+# These selections add special support for cyrillic languages like Russian and Serbian, etc.:
+RUN apk add font-vollkorn font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
+
+# These selections cover special Asiatic languages like Japanese, etc.:
+RUN apk add font-terminus font-noto font-noto-thai font-noto-tibetan font-ipa font-sony-misc font-jis-misc
+
+# The following will add some partially supported Chinese fonts:
+RUN apk add font-isas-misc
+
+#others
+RUN apk add font-terminus font-noto font-noto-extra font-arabic-misc
+RUN apk add font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki-cyrillic font-cronyx-cyrillic
+RUN apk add font-noto-arabic font-noto-armenian font-noto-cherokee font-noto-devanagari font-noto-ethiopic font-noto-georgian
+RUN apk add font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai
+
+# microsoft fonts
+#RUN apk add msttcorefonts-installer fontconfig update-ms-fonts
+
+RUN apk add graphviz
+
+RUN fc-cache -fv
+
+
+###_____________java25withImageMagick______________________###
+FROM java-25-with-languages-and-fonts AS java-25-with-image-magick
+RUN apk add imagemagick ghostscript
+
+# support SVG conversion
+RUN apk add librsvg
+# support HEIF/HEIC format
+RUN apk add libheif libheif-tools
+
+
+
+###_____________java25withLibreOffice______________________###
+FROM java-25-with-languages-and-fonts AS java-25-with-libre-office
+RUN apk add libreoffice
+
+# support SVG conversion
+RUN apk add librsvg
+# support HEIF/HEIC format
+RUN apk add libheif libheif-tools

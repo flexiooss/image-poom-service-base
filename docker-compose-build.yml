@@ -55,43 +55,50 @@ services:
   base-25-alpine:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-base
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine:${VERSION}
 
   base-25-alpine-with-font-config:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine-with-font-config
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-with-font-config
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-font-config:${VERSION}
 
   base-25-alpine-with-docker:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine-with-docker
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-with-docker
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-with-docker:${VERSION}
 
   base-imagemagick-25-alpine:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine-with-image-magick
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-with-image-magick
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-imagemagick:${VERSION}
 
   base-libreoffice-25-alpine:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine-with-libreoffice
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-with-libre-office
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-25-alpine-libreoffice:${VERSION}
 
   base-with-build-tools-25-alpine:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine-with-build-tools
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-with-build-tools
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-25-alpine:${VERSION}
 
   base-with-build-tools-and-docker-25-alpine:
     build:
       context: .
-      dockerfile: Dockerfile-25-alpine-with-build-tools-and-docker
+      dockerfile: Dockerfile-25-alpine-bundle
+      target: java-25-with-build-tools-and-docker
     image: ${DOCKER_REGISTRY:-localhost:5000}/codingmatters/poom-service-base-with-build-tools-and-docker-25-alpine:${VERSION}
 
   ######   JAVA 21 with ubuntu  #######
