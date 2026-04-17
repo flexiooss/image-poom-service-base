@@ -29,7 +29,9 @@ RUN apk add font-noto-arabic font-noto-armenian font-noto-cherokee font-noto-dev
 RUN apk add font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai
 
 # microsoft fonts
-RUN apk add msttcorefonts-installer fontconfig update-ms-fonts
+#RUN apk add msttcorefonts-installer fontconfig update-ms-fonts
+RUN apk add font-croscore # Arimo=Arial Cousine=Courier New  Tinos=Times New Roman
+RUN apk add font-noto-emoji font-roboto font-carlito font-liberation font-linux-libertine
 
 RUN apk add graphviz
 
