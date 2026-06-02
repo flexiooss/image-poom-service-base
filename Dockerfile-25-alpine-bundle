@@ -9,7 +9,7 @@ RUN apk add tar bash wget git python3 openssh
 ####################
 # maven
 ####################
-ENV MVN_VERSION=3.9.12
+ENV MVN_VERSION=3.9.16
 RUN wget https://dlcdn.apache.org/maven/maven-3/${MVN_VERSION}/binaries/apache-maven-${MVN_VERSION}-bin.tar.gz -O /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz
 RUN tar zxvf /tmp/apache-maven-${MVN_VERSION}-bin.tar.gz -C /usr/local/
 
@@ -98,8 +98,13 @@ RUN apk add font-misc-cyrillic font-mutt-misc font-screen-cyrillic font-winitzki
 RUN apk add font-noto-arabic font-noto-armenian font-noto-cherokee font-noto-devanagari font-noto-ethiopic font-noto-georgian
 RUN apk add font-noto-hebrew font-noto-lao font-noto-malayalam font-noto-tamil font-noto-thaana font-noto-thai
 
-RUN apk add msttcorefonts-installer fontconfig
+#RUN apk add msttcorefonts-installer fontconfig
 RUN apk add font-noto-emoji font-roboto font-carlito
+RUN apk add font-croscore # Arimo=Arial Cousine=Courier New  Tinos=Times New Roman
+RUN apk add font-noto-emoji font-roboto font-carlito font-liberation font-linux-libertine
+
+# Aptos (Microsoft 365 default font, not packaged in Alpine) - vendored .ttf files
+COPY resource/fonts/Microsoft-Aptos-Fonts/*.ttf /usr/share/fonts/aptos/
 
 
 RUN apk add graphviz
